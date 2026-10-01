@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rwonom Library - الشرح الشامل</title>
-    <!-- شعار الموقع في المتصفح -->
+    <title>Rwonom Library - Documentation</title>
+    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <!-- خط العرض العربي Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات FontAwesome -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -27,7 +27,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
@@ -37,14 +37,12 @@
             padding-bottom: 50px;
         }
 
-        /* الهيدر وشعار الموقع */
+        /* Header */
         header {
             background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
             border-bottom: 2px solid var(--border);
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .logo-container {
@@ -56,10 +54,10 @@
         }
 
         .logo-icon {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--primary);
             background: rgba(16, 185, 129, 0.1);
-            padding: 10px 20px;
+            padding: 8px 18px;
             border-radius: 16px;
             border: 1px solid rgba(16, 185, 129, 0.3);
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
@@ -69,7 +67,7 @@
             font-size: 2.8rem;
             font-weight: 900;
             color: #fff;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         header h1 span {
@@ -82,7 +80,7 @@
             margin-top: 5px;
         }
 
-        /* المحتوى الرئيسي */
+        /* Container */
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -99,9 +97,9 @@
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -110,9 +108,10 @@
         p.section-desc {
             color: var(--text-muted);
             margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
-        /* صندوق الكود المميز مع زر النسخ */
+        /* Code Box */
         .code-box {
             background: var(--bg-code);
             border: 1px solid var(--border);
@@ -129,7 +128,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
@@ -141,7 +140,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Inter', sans-serif;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -154,29 +153,36 @@
         }
 
         .copy-btn.copied {
-            background: #3b82f6;
+            background: #10b981;
         }
 
         pre {
             padding: 20px;
             overflow-x: auto;
-            direction: ltr;
             text-align: left;
         }
 
         code {
             font-family: 'Fira Code', monospace;
-            font-size: 0.95rem;
-            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        /* جدول الأيقونات المرفقة */
+        /* Lua Syntax Highlighting Colors */
+        .keyword { color: #ff7b72; font-weight: 600; }  
+        .function { color: #d2a8ff; }                  
+        .string { color: #a5d6ff; }                    
+        .number { color: #79c0ff; }                    
+        .comment { color: #8b949e; font-style: italic; } 
+        .variable { color: #ffa657; }                  
+        .property { color: #7ee787; }                  
+
+        /* Icons Grid */
         .icons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 12px;
             margin-top: 15px;
-            direction: ltr;
             text-align: left;
         }
 
@@ -190,14 +196,34 @@
             justify-content: space-between;
             font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
+        .icon-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* تأثير الوميض الأخضر عند الضغط على الأيقونة لمدة ثانية */
+        .icon-card.glow {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* جعل الأيقونات بيضاء بالكامل */
         .icon-symbol {
             font-size: 1.2rem;
-            color: var(--primary);
+            color: #ffffff !important;
         }
 
-        /* إشعار النسخ المصغر */
+        .icon-name {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -227,204 +253,263 @@
 </head>
 <body>
 
-    <!-- الهيدر -->
+    <!-- Header -->
     <header>
         <div class="logo-container">
             <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
             <h1>Rwonom <span>Library</span></h1>
         </div>
-        <p>الدليل الشامل والمتكامل لاستخدام واجهات البرمجة وتخصيص مكتبة الواجهات الاحترافية</p>
+        <p>Complete documentation and guide for setting up and customizing the UI library</p>
     </header>
 
     <div class="container">
 
-        <!-- القسم 0: رابط تحميل المكتبة (Loadstring) -->
+        <!-- Section 1: Loadstring -->
         <section>
-            <h2><i class="fa-solid fa-link"></i> 0. تحميل المكتبة (Loadstring)</h2>
-            <p class="section-desc">هذا هو رابط سكريبت المكتبة الخاص بك، يجب وضعه في بداية أي سكربت لكي تعمل معك الأكواد بشكل صحيح.</p>
+            <h2><i class="fa-solid fa-link"></i> 1. Library Loadstring</h2>
+            <p class="section-desc">Paste this code at the very top of your script to load the library core functions.</p>
             
             <div class="code-box">
                 <div class="code-header">
-                    <span>Loadstring Script</span>
-                    <button class="copy-btn" onclick="copyCode(this)">
-                        <i class="fa-regular fa-copy"></i> نسخ الكود
-                    </button>
+                    <span>loadstring.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Code</button>
                 </div>
-                <pre><code>local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/mmjjdok-lang/Rwonom-Hub-/refs/heads/main/Rwonom.%20Lua"))()</code></pre>
+                <pre><code><span class="keyword">local</span> <span class="variable">Library</span> = <span class="function">loadstring</span>(<span class="variable">game</span>:<span class="function">HttpGet</span>(<span class="string">"https://raw.githubusercontent.com/mmjjdok-lang/Rwonom-Hub-/refs/heads/main/Rwonom.%20Lua"</span>))()</code></pre>
             </div>
         </section>
 
-        <!-- القسم الأول: النافذة الأساسية -->
+        <!-- Section 2: Window Creation -->
         <section>
-            <h2><i class="fa-solid fa-window-maximize"></i> 1. إنشاء النافذة الأساسية</h2>
-            <p class="section-desc">هذا الكود لتحديد عنوان النافذة، الأيقونة، المقاس، والثيم العام.</p>
+            <h2><i class="fa-solid fa-window-maximize"></i> 2. Creating the Window</h2>
+            <p class="section-desc">Initialize the main window, set its title, Lucide icon, theme color, and dimensions.</p>
             
             <div class="code-box">
                 <div class="code-header">
-                    <span>Window Setup Code</span>
-                    <button class="copy-btn" onclick="copyCode(this)">
-                        <i class="fa-regular fa-copy"></i> نسخ الكود
-                    </button>
+                    <span>window.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Code</button>
                 </div>
-                <pre><code>local Window = Library.CreateWindow({
-    Title = "الواجهة الاحترافية",
-    Icon = "home",        -- اسم أيقونة Lucide، تطلع يسار العنوان
-    Theme = "Green",
-    Size = { X = 586, Y = 339 },
+                <pre><code><span class="keyword">local</span> <span class="variable">Window</span> = <span class="variable">Library</span>:<span class="function">CreateWindow</span>({
+    <span class="property">Title</span> = <span class="string">"Professional UI"</span>,
+    <span class="property">Icon</span> = <span class="string">"home"</span>,        <span class="comment">-- Lucide icon name, appears on the left of the title</span>
+    <span class="property">Theme</span> = <span class="string">"Green"</span>,
+    <span class="property">Size</span> = { <span class="property">X</span> = <span class="number">586</span>, <span class="property">Y</span> = <span class="number">339</span> },
 })</code></pre>
             </div>
         </section>
 
-        <!-- القسم الثاني: التبويبات والعناصر (أزرار، ملاحظات، نصوص) -->
+        <!-- Section 3: Tabs System -->
         <section>
-            <h2><i class="fa-solid fa-bars-progress"></i> 2. إنشاء التبويبات والعناصر الداخلية</h2>
-            <p class="section-desc">إليك طريقة إضافة تبويب رئيسي، نصوص عادية، ملاحظات بألوان مختلفة، وأزرار تفاعلية مع إشعارات.</p>
+            <h2><i class="fa-solid fa-folder-open"></i> 3. Creating Tabs</h2>
+            <p class="section-desc">Create functional tabs inside your window using Lucide icon identifiers.</p>
             
             <div class="code-box">
                 <div class="code-header">
-                    <span>Tabs & Elements Code</span>
-                    <button class="copy-btn" onclick="copyCode(this)">
-                        <i class="fa-regular fa-copy"></i> نسخ الكود
-                    </button>
+                    <span>tab.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Code</button>
                 </div>
-                <pre><code>local MainTab = Window:CreateTab("الرئيسية", "settings") -- أيقونة Lucide بالاسم
-MainTab:CreateLabel("هذا نص بسيط بدون خلفية")
-MainTab:CreateNote("هذه ملاحظة غامقة", "Dark")
-MainTab:CreateNote("هذه ملاحظة زرقاء معلوماتية", "Blue")
-
-MainTab:CreateButton("زر تجريبي", "يرسل إشعار عند الضغط", function()
-    Library.Notify("تم", "تم الضغط على الزر", "وصف إضافي هنا", 3)
-end)</code></pre>
+                <pre><code><span class="keyword">local</span> <span class="variable">MainTab</span> = <span class="variable">Window</span>:<span class="function">CreateTab</span>(<span class="string">"Main"</span>, <span class="string">"settings"</span>) <span class="comment">-- Lucide icon by name</span></code></pre>
             </div>
         </section>
 
-        <!-- القسم الثالث: نظام التدرج العام -->
+        <!-- Section 4: Labels & Notes -->
         <section>
-            <h2><i class="fa-solid fa-palette"></i> 3. نظام التدرج العام (Gradients)</h2>
-            <p class="section-desc">تستطيع تطبيق تدرجات لونية مذهلة على زر الفتح أو الإطار الخارجي للنافذة مع التحكم بالسرعة والكثافة.</p>
+            <h2><i class="fa-solid fa-note-sticky"></i> 4. Labels & Notes Elements</h2>
+            <p class="section-desc">Add simple text labels or highlighted notes to provide information to users.</p>
             
             <div class="code-box">
                 <div class="code-header">
-                    <span>Gradient System Code</span>
-                    <button class="copy-btn" onclick="copyCode(this)">
-                        <i class="fa-regular fa-copy"></i> نسخ الكود
-                    </button>
+                    <span>labels_notes.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Code</button>
                 </div>
-                <pre><code>-- نظام التدرج العام
-Library.ApplyGradient(Window.OpenButton, { Colors = {"Green", "Purple"}, Speed = 5, Intensity = 1 })
-Library.ApplyGradient(Window.FrameStroke, { Colors = {"Blue", "Cyan"}, Speed = 8, Intensity = 0.6 })</code></pre>
+                <pre><code><span class="variable">MainTab</span>:<span class="function">CreateLabel</span>(<span class="string">"This is a simple text without background"</span>)
+<span class="variable">MainTab</span>:<span class="function">CreateNote</span>(<span class="string">"This is a dark note highlight"</span>, <span class="string">"Dark"</span>)
+<span class="variable">MainTab</span>:<span class="function">CreateNote</span>(<span class="string">"This is an informative blue note"</span>, <span class="string">"Blue"</span>)</code></pre>
             </div>
         </section>
 
-        <!-- القسم الرابع: جدول الأيقونات المتاحة (Lucide Icons) -->
+        <!-- Section 5: Buttons & Notifications -->
         <section>
-            <h2><i class="fa-solid fa-icons"></i> قائمة الأيقونات المدعومة (LUCIDE_ICONS)</h2>
-            <p class="section-desc">هذه هي كافة الأيقونات والرموز المضمنة في المكتبة والتي يمكنك استخدامها:</p>
+            <h2><i class="fa-solid fa-hand-pointer"></i> 5. Buttons & Notifications System</h2>
+            <p class="section-desc">Create interactive buttons that trigger custom notifications upon clicking.</p>
+            
+            <div class="code-box">
+                <div class="code-header">
+                    <span>buttons.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                </div>
+                <pre><code><span class="variable">MainTab</span>:<span class="function">CreateButton</span>(<span class="string">"Test Button"</span>, <span class="string">"Sends a notification when clicked"</span>, <span class="keyword">function</span>()
+    <span class="variable">Library</span>.<span class="function">Notify</span>(<span class="string">"Success"</span>, <span class="string">"Button was clicked!"</span>, <span class="string">"Additional description here"</span>, <span class="number">3</span>)
+<span class="keyword">end</span>)</code></pre>
+            </div>
+        </section>
+
+        <!-- Section 6: Global Gradient System -->
+        <section>
+            <h2><i class="fa-solid fa-palette"></i> 6. Global Gradient System</h2>
+            <p class="section-desc">Apply animated color gradients to open buttons or frame strokes with custom speed and intensity.</p>
+            
+            <div class="code-box">
+                <div class="code-header">
+                    <span>gradients.lua</span>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                </div>
+                <pre><code><span class="comment">-- Global Gradient System</span>
+<span class="variable">Library</span>.<span class="function">ApplyGradient</span>(<span class="variable">Window</span>.<span class="property">OpenButton</span>, { <span class="property">Colors</span> = {<span class="string">"Green"</span>, <span class="string">"Purple"</span>}, <span class="property">Speed</span> = <span class="number">5</span>, <span class="property">Intensity</span> = <span class="number">1</span> })
+<span class="variable">Library</span>.<span class="function">ApplyGradient</span>(<span class="variable">Window</span>.<span class="property">FrameStroke</span>, { <span class="property">Colors</span> = {<span class="string">"Blue"</span>, <span class="string">"Cyan"</span>}, <span class="property">Speed</span> = <span class="number">8</span>, <span class="property">Intensity</span> = <span class="number">0.6</span> })</code></pre>
+            </div>
+        </section>
+
+        <!-- Section 7: Lucide Icons Reference -->
+        <section>
+            <h2><i class="fa-solid fa-icons"></i> Lucide Icons Reference Grid</h2>
+            <p class="section-desc">Click any icon card to copy its name. The icon will glow green and play a sound!</p>
             
             <div class="icons-grid">
-                <div class="icon-card"><span>home</span><span class="icon-symbol">⌂</span></div>
-                <div class="icon-card"><span>house</span><span class="icon-symbol">⌂</span></div>
-                <div class="icon-card"><span>settings</span><span class="icon-symbol">⚙</span></div>
-                <div class="icon-card"><span>cog</span><span class="icon-symbol">⚙</span></div>
-                <div class="icon-card"><span>user</span><span class="icon-symbol">☺</span></div>
-                <div class="icon-card"><span>user-round</span><span class="icon-symbol">☺</span></div>
-                <div class="icon-card"><span>users</span><span class="icon-symbol">☺☺</span></div>
-                <div class="icon-card"><span>star</span><span class="icon-symbol">★</span></div>
-                <div class="icon-card"><span>heart</span><span class="icon-symbol">♥</span></div>
-                <div class="icon-card"><span>info</span><span class="icon-symbol">ℹ</span></div>
-                <div class="icon-card"><span>circle-alert</span><span class="icon-symbol">⚠</span></div>
-                <div class="icon-card"><span>triangle-alert</span><span class="icon-symbol">⚠</span></div>
-                <div class="icon-card"><span>search</span><span class="icon-symbol">🔍</span></div>
-                <div class="icon-card"><span>bell</span><span class="icon-symbol">🔔</span></div>
-                <div class="icon-card"><span>check</span><span class="icon-symbol">✓</span></div>
-                <div class="icon-card"><span>check-check</span><span class="icon-symbol">✓✓</span></div>
-                <div class="icon-card"><span>x</span><span class="icon-symbol">✕</span></div>
-                <div class="icon-card"><span>plus</span><span class="icon-symbol">+</span></div>
-                <div class="icon-card"><span>minus</span><span class="icon-symbol">–</span></div>
-                <div class="icon-card"><span>trash</span><span class="icon-symbol">🗑</span></div>
-                <div class="icon-card"><span>edit</span><span class="icon-symbol">✎</span></div>
-                <div class="icon-card"><span>folder</span><span class="icon-symbol">📁</span></div>
-                <div class="icon-card"><span>folder-open</span><span class="icon-symbol">📂</span></div>
-                <div class="icon-card"><span>file</span><span class="icon-symbol">📄</span></div>
-                <div class="icon-card"><span>lock</span><span class="icon-symbol">🔒</span></div>
-                <div class="icon-card"><span>unlock</span><span class="icon-symbol">🔓</span></div>
-                <div class="icon-card"><span>sun</span><span class="icon-symbol">☀</span></div>
-                <div class="icon-card"><span>moon</span><span class="icon-symbol">☾</span></div>
-                <div class="icon-card"><span>globe</span><span class="icon-symbol">🌐</span></div>
-                <div class="icon-card"><span>mail</span><span class="icon-symbol">✉</span></div>
-                <div class="icon-card"><span>phone</span><span class="icon-symbol">☎</span></div>
-                <div class="icon-card"><span>calendar</span><span class="icon-symbol">📅</span></div>
-                <div class="icon-card"><span>clock</span><span class="icon-symbol">🕐</span></div>
-                <div class="icon-card"><span>download</span><span class="icon-symbol">⬇</span></div>
-                <div class="icon-card"><span>upload</span><span class="icon-symbol">⬆</span></div>
-                <div class="icon-card"><span>link</span><span class="icon-symbol">🔗</span></div>
-                <div class="icon-card"><span>eye</span><span class="icon-symbol">👁</span></div>
-                <div class="icon-card"><span>shield</span><span class="icon-symbol">🛡</span></div>
-                <div class="icon-card"><span>zap</span><span class="icon-symbol">⚡</span></div>
-                <div class="icon-card"><span>gift</span><span class="icon-symbol">🎁</span></div>
-                <div class="icon-card"><span>music</span><span class="icon-symbol">♪</span></div>
-                <div class="icon-card"><span>image</span><span class="icon-symbol">🖼</span></div>
-                <div class="icon-card"><span>camera</span><span class="icon-symbol">📷</span></div>
-                <div class="icon-card"><span>map-pin</span><span class="icon-symbol">📍</span></div>
-                <div class="icon-card"><span>flag</span><span class="icon-symbol">🚩</span></div>
-                <div class="icon-card"><span>bookmark</span><span class="icon-symbol">🔖</span></div>
-                <div class="icon-card"><span>tag</span><span class="icon-symbol">🏷</span></div>
-                <div class="icon-card"><span>filter</span><span class="icon-symbol">▽</span></div>
-                <div class="icon-card"><span>menu</span><span class="icon-symbol">☰</span></div>
-                <div class="icon-card"><span>grid</span><span class="icon-symbol">▦</span></div>
-                <div class="icon-card"><span>list</span><span class="icon-symbol">≡</span></div>
-                <div class="icon-card"><span>layers</span><span class="icon-symbol">▤</span></div>
-                <div class="icon-card"><span>package</span><span class="icon-symbol">📦</span></div>
-                <div class="icon-card"><span>truck</span><span class="icon-symbol">🚚</span></div>
-                <div class="icon-card"><span>shopping-cart</span><span class="icon-symbol">🛒</span></div>
-                <div class="icon-card"><span>wallet</span><span class="icon-symbol">👛</span></div>
-                <div class="icon-card"><span>credit-card</span><span class="icon-symbol">💳</span></div>
-                <div class="icon-card"><span>chart-bar</span><span class="icon-symbol">📊</span></div>
-                <div class="icon-card"><span>chart-line</span><span class="icon-symbol">📈</span></div>
-                <div class="icon-card"><span>play</span><span class="icon-symbol">▶</span></div>
-                <div class="icon-card"><span>pause</span><span class="icon-symbol">⏸</span></div>
-                <div class="icon-card"><span>volume-2</span><span class="icon-symbol">🔊</span></div>
-                <div class="icon-card"><span>wifi</span><span class="icon-symbol">📶</span></div>
-                <div class="icon-card"><span>battery</span><span class="icon-symbol">🔋</span></div>
-                <div class="icon-card"><span>power</span><span class="icon-symbol">⏻</span></div>
-                <div class="icon-card"><span>code</span><span class="icon-symbol">⌨</span></div>
-                <div class="icon-card"><span>gamepad</span><span class="icon-symbol">🎮</span></div>
-                <div class="icon-card"><span>crown</span><span class="icon-symbol">♛</span></div>
-                <div class="icon-card"><span>rocket</span><span class="icon-symbol">🚀</span></div>
-                <div class="icon-card"><span>sparkles</span><span class="icon-symbol">✦</span></div>
-                <div class="icon-card"><span>palette</span><span class="icon-symbol">🎨</span></div>
-                <div class="icon-card"><span>wrench</span><span class="icon-symbol">🔧</span></div>
-                <div class="icon-card"><span>hammer</span><span class="icon-symbol">🔨</span></div>
-                <div class="icon-card"><span>key</span><span class="icon-symbol">🔑</span></div>
-                <div class="icon-card"><span>database</span><span class="icon-symbol">🗄</span></div>
-                <div class="icon-card"><span>server</span><span class="icon-symbol">🖥</span></div>
-                <div class="icon-card"><span>cloud</span><span class="icon-symbol">☁</span></div>
-                <div class="icon-card"><span>circle</span><span class="icon-symbol">●</span></div>
-                <div class="icon-card"><span>square</span><span class="icon-symbol">■</span></div>
-                <div class="icon-card"><span>triangle</span><span class="icon-symbol">▲</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'home')"><span class="icon-name">home</span><span class="icon-symbol">⌂</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'house')"><span class="icon-name">house</span><span class="icon-symbol">⌂</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'settings')"><span class="icon-name">settings</span><span class="icon-symbol">⚙</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'cog')"><span class="icon-name">cog</span><span class="icon-symbol">⚙</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'user')"><span class="icon-name">user</span><span class="icon-symbol">☺</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'user-round')"><span class="icon-name">user-round</span><span class="icon-symbol">☺</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'users')"><span class="icon-name">users</span><span class="icon-symbol">☺☺</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'star')"><span class="icon-name">star</span><span class="icon-symbol">★</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'heart')"><span class="icon-name">heart</span><span class="icon-symbol">♥</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'info')"><span class="icon-name">info</span><span class="icon-symbol">ℹ</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'circle-alert')"><span class="icon-name">circle-alert</span><span class="icon-symbol">⚠</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'triangle-alert')"><span class="icon-name">triangle-alert</span><span class="icon-symbol">⚠</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'search')"><span class="icon-name">search</span><span class="icon-symbol">🔍</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'bell')"><span class="icon-name">bell</span><span class="icon-symbol">🔔</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'check')"><span class="icon-name">check</span><span class="icon-symbol">✓</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'check-check')"><span class="icon-name">check-check</span><span class="icon-symbol">✓✓</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'x')"><span class="icon-name">x</span><span class="icon-symbol">✕</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'plus')"><span class="icon-name">plus</span><span class="icon-symbol">+</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'minus')"><span class="icon-name">minus</span><span class="icon-symbol">–</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'trash')"><span class="icon-name">trash</span><span class="icon-symbol">🗑</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'edit')"><span class="icon-name">edit</span><span class="icon-symbol">✎</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'folder')"><span class="icon-name">folder</span><span class="icon-symbol">📁</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'folder-open')"><span class="icon-name">folder-open</span><span class="icon-symbol">📂</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'file')"><span class="icon-name">file</span><span class="icon-symbol">📄</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'lock')"><span class="icon-name">lock</span><span class="icon-symbol">🔒</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'unlock')"><span class="icon-name">unlock</span><span class="icon-symbol">🔓</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'sun')"><span class="icon-name">sun</span><span class="icon-symbol">☀</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'moon')"><span class="icon-name">moon</span><span class="icon-symbol">☾</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'globe')"><span class="icon-name">globe</span><span class="icon-symbol">🌐</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'mail')"><span class="icon-name">mail</span><span class="icon-symbol">✉</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'phone')"><span class="icon-name">phone</span><span class="icon-symbol">☎</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'calendar')"><span class="icon-name">calendar</span><span class="icon-symbol">📅</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'clock')"><span class="icon-name">clock</span><span class="icon-symbol">🕐</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'download')"><span class="icon-name">download</span><span class="icon-symbol">⬇</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'upload')"><span class="icon-name">upload</span><span class="icon-symbol">⬆</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'link')"><span class="icon-name">link</span><span class="icon-symbol">🔗</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'eye')"><span class="icon-name">eye</span><span class="icon-symbol">👁</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'shield')"><span class="icon-name">shield</span><span class="icon-symbol">🛡</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'zap')"><span class="icon-name">zap</span><span class="icon-symbol">⚡</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'gift')"><span class="icon-name">gift</span><span class="icon-symbol">🎁</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'music')"><span class="icon-name">music</span><span class="icon-symbol">♪</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'image')"><span class="icon-name">image</span><span class="icon-symbol">🖼</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'camera')"><span class="icon-name">camera</span><span class="icon-symbol">📷</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'map-pin')"><span class="icon-name">map-pin</span><span class="icon-symbol">📍</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'flag')"><span class="icon-name">flag</span><span class="icon-symbol">🚩</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'bookmark')"><span class="icon-name">bookmark</span><span class="icon-symbol">🔖</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'tag')"><span class="icon-name">tag</span><span class="icon-symbol">🏷</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'filter')"><span class="icon-name">filter</span><span class="icon-symbol">▽</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'menu')"><span class="icon-name">menu</span><span class="icon-symbol">☰</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'grid')"><span class="icon-name">grid</span><span class="icon-symbol">▦</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'list')"><span class="icon-name">list</span><span class="icon-symbol">≡</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'layers')"><span class="icon-name">layers</span><span class="icon-symbol">▤</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'package')"><span class="icon-name">package</span><span class="icon-symbol">📦</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'truck')"><span class="icon-name">truck</span><span class="icon-symbol">🚚</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'shopping-cart')"><span class="icon-name">shopping-cart</span><span class="icon-symbol">🛒</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'wallet')"><span class="icon-name">wallet</span><span class="icon-symbol">👛</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'credit-card')"><span class="icon-name">credit-card</span><span class="icon-symbol">💳</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'chart-bar')"><span class="icon-name">chart-bar</span><span class="icon-symbol">📊</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'chart-line')"><span class="icon-name">chart-line</span><span class="icon-symbol">📈</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'play')"><span class="icon-name">play</span><span class="icon-symbol">▶</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'pause')"><span class="icon-name">pause</span><span class="icon-symbol">⏸</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'volume-2')"><span class="icon-name">volume-2</span><span class="icon-symbol">🔊</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'volume-x')"><span class="icon-name">volume-x</span><span class="icon-symbol">🔇</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'wifi')"><span class="icon-name">wifi</span><span class="icon-symbol">📶</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'battery')"><span class="icon-name">battery</span><span class="icon-symbol">🔋</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'power')"><span class="icon-name">power</span><span class="icon-symbol">⏻</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'log-out')"><span class="icon-name">log-out</span><span class="icon-symbol">⎋</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'log-in')"><span class="icon-name">log-in</span><span class="icon-symbol">⏎</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'arrow-right')"><span class="icon-name">arrow-right</span><span class="icon-symbol">→</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'arrow-left')"><span class="icon-name">arrow-left</span><span class="icon-symbol">←</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'arrow-up')"><span class="icon-name">arrow-up</span><span class="icon-symbol">↑</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'arrow-down')"><span class="icon-name">arrow-down</span><span class="icon-symbol">↓</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'chevron-right')"><span class="icon-name">chevron-right</span><span class="icon-symbol">›</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'chevron-left')"><span class="icon-name">chevron-left</span><span class="icon-symbol">‹</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'refresh-cw')"><span class="icon-name">refresh-cw</span><span class="icon-symbol">↻</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'code')"><span class="icon-name">code</span><span class="icon-symbol">⌨</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'terminal')"><span class="icon-name">terminal</span><span class="icon-symbol">⌨</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'gamepad')"><span class="icon-name">gamepad</span><span class="icon-symbol">🎮</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'crown')"><span class="icon-name">crown</span><span class="icon-symbol">♛</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'rocket')"><span class="icon-name">rocket</span><span class="icon-symbol">🚀</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'sparkles')"><span class="icon-name">sparkles</span><span class="icon-symbol">✦</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'palette')"><span class="icon-name">palette</span><span class="icon-symbol">🎨</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'paintbrush')"><span class="icon-name">paintbrush</span><span class="icon-symbol">🖌</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'wrench')"><span class="icon-name">wrench</span><span class="icon-symbol">🔧</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'hammer')"><span class="icon-name">hammer</span><span class="icon-symbol">🔨</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'key')"><span class="icon-name">key</span><span class="icon-symbol">🔑</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'database')"><span class="icon-name">database</span><span class="icon-symbol">🗄</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'server')"><span class="icon-name">server</span><span class="icon-symbol">🖥</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'cloud')"><span class="icon-name">cloud</span><span class="icon-symbol">☁</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'sliders')"><span class="icon-name">sliders</span><span class="icon-symbol">🎚</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'toggle-left')"><span class="icon-name">toggle-left</span><span class="icon-symbol">⬮</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'toggle-right')"><span class="icon-name">toggle-right</span><span class="icon-symbol">⬯</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'circle')"><span class="icon-name">circle</span><span class="icon-symbol">●</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'square')"><span class="icon-name">square</span><span class="icon-symbol">■</span></div>
+                <div class="icon-card" onclick="copyIcon(this, 'triangle')"><span class="icon-name">triangle</span><span class="icon-symbol">▲</span></div>
             </div>
         </section>
 
     </div>
 
-    <!-- رسالة التنبيه العائمة عند النسخ -->
-    <div id="toast" class="toast">تم نسخ الكود بنجاح! 📋</div>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied successfully! 📋</div>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 - Rwonom Library</p>
+        <p>All rights reserved &copy; 2026 - Rwonom Library</p>
     </footer>
 
     <script>
+        // دالة تشغيل الصوت التفاعلي عند النقر
+        function playClickSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); // نغمة D5
+                oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08);
+                
+                gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.08);
+            } catch (e) {
+                // تجاهل خطأ متصفحات الأجهزة المحمولة إذا تطلبت تفاعلاً أولياً
+            }
+        }
+
+        // دالة نسخ أكواد الأنظمة مع تحويل الزر لعلامة صح
         function copyCode(button) {
+            playClickSound();
             const codeBox = button.closest('.code-box');
             const codeText = codeBox.querySelector('code').innerText;
 
             navigator.clipboard.writeText(codeText).then(() => {
                 const originalHTML = button.innerHTML;
-                button.innerHTML = '<i class="fa-solid fa-check"></i> تم النسخ!';
+                button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
                 button.classList.add('copied');
 
                 const toast = document.getElementById('toast');
+                toast.innerText = "Code copied successfully! ✓";
                 toast.classList.add('show');
 
                 setTimeout(() => {
@@ -433,9 +518,31 @@ Library.ApplyGradient(Window.FrameStroke, { Colors = {"Blue", "Cyan"}, Speed = 8
                     toast.classList.remove('show');
                 }, 2000);
             }).catch(err => {
-                alert('فشل نسخ الكود: ', err);
+                alert('Failed to copy code: ', err);
+            });
+        }
+
+        // دالة نسخ الأيقونات مع الوميض الأخضر لمدة ثانية
+        function copyIcon(cardElement, iconName) {
+            playClickSound();
+
+            navigator.clipboard.writeText(iconName).then(() => {
+                // إظهار التابع الوميضي الأخضر
+                cardElement.classList.add('glow');
+
+                const toast = document.getElementById('toast');
+                toast.innerText = `Icon name "${iconName}" copied! ✓`;
+                toast.classList.add('show');
+
+                setTimeout(() => {
+                    cardElement.classList.remove('glow');
+                    toast.classList.remove('show');
+                }, 1000); // يستمر الوميض لمدة 1 ثانية
+            }).catch(err => {
+                alert('Failed to copy icon name: ', err);
             });
         }
     </script>
 </body>
 </html>
+ 
