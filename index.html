@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rwonom Library - الشرح الشامل</title>
+    <!-- شعار الموقع في المتصفح -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <!-- خط العرض العربي Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-code: #090d16;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding-bottom: 50px;
+        }
+
+        /* الهيدر وشعار الموقع */
+        header {
+            background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+            border-bottom: 2px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 10px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        header h1 span {
+            color: var(--primary);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        /* المحتوى الرئيسي */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p.section-desc {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* صندوق الكود المميز مع زر النسخ */
+        .code-box {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            position: relative;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: #3b82f6;
+        }
+
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+        }
+
+        /* جدول الأيقونات المرفقة */
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .icon-card {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .icon-symbol {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* إشعار النسخ المصغر */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+            <h1>Rwonom <span>Library</span></h1>
+        </div>
+        <p>الدليل الشامل والمتكامل لاستخدام واجهات البرمجة وتخصيص مكتبة الواجهات الاحترافية</p>
+    </header>
+
+    <div class="container">
+
+        <!-- القسم 0: رابط تحميل المكتبة (Loadstring) -->
+        <section>
+            <h2><i class="fa-solid fa-link"></i> 0. تحميل المكتبة (Loadstring)</h2>
+            <p class="section-desc">هذا هو رابط سكريبت المكتبة الخاص بك، يجب وضعه في بداية أي سكربت لكي تعمل معك الأكواد بشكل صحيح.</p>
+            
+            <div class="code-box">
+                <div class="code-header">
+                    <span>Loadstring Script</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fa-regular fa-copy"></i> نسخ الكود
+                    </button>
+                </div>
+                <pre><code>local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/mmjjdok-lang/Rwonom-Hub-/refs/heads/main/Rwonom.%20Lua"))()</code></pre>
+            </div>
+        </section>
+
+        <!-- القسم الأول: النافذة الأساسية -->
+        <section>
+            <h2><i class="fa-solid fa-window-maximize"></i> 1. إنشاء النافذة الأساسية</h2>
+            <p class="section-desc">هذا الكود لتحديد عنوان النافذة، الأيقونة، المقاس، والثيم العام.</p>
+            
+            <div class="code-box">
+                <div class="code-header">
+                    <span>Window Setup Code</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fa-regular fa-copy"></i> نسخ الكود
+                    </button>
+                </div>
+                <pre><code>local Window = Library.CreateWindow({
+    Title = "الواجهة الاحترافية",
+    Icon = "home",        -- اسم أيقونة Lucide، تطلع يسار العنوان
+    Theme = "Green",
+    Size = { X = 586, Y = 339 },
+})</code></pre>
+            </div>
+        </section>
+
+        <!-- القسم الثاني: التبويبات والعناصر (أزرار، ملاحظات، نصوص) -->
+        <section>
+            <h2><i class="fa-solid fa-bars-progress"></i> 2. إنشاء التبويبات والعناصر الداخلية</h2>
+            <p class="section-desc">إليك طريقة إضافة تبويب رئيسي، نصوص عادية، ملاحظات بألوان مختلفة، وأزرار تفاعلية مع إشعارات.</p>
+            
+            <div class="code-box">
+                <div class="code-header">
+                    <span>Tabs & Elements Code</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fa-regular fa-copy"></i> نسخ الكود
+                    </button>
+                </div>
+                <pre><code>local MainTab = Window:CreateTab("الرئيسية", "settings") -- أيقونة Lucide بالاسم
+MainTab:CreateLabel("هذا نص بسيط بدون خلفية")
+MainTab:CreateNote("هذه ملاحظة غامقة", "Dark")
+MainTab:CreateNote("هذه ملاحظة زرقاء معلوماتية", "Blue")
+
+MainTab:CreateButton("زر تجريبي", "يرسل إشعار عند الضغط", function()
+    Library.Notify("تم", "تم الضغط على الزر", "وصف إضافي هنا", 3)
+end)</code></pre>
+            </div>
+        </section>
+
+        <!-- القسم الثالث: نظام التدرج العام -->
+        <section>
+            <h2><i class="fa-solid fa-palette"></i> 3. نظام التدرج العام (Gradients)</h2>
+            <p class="section-desc">تستطيع تطبيق تدرجات لونية مذهلة على زر الفتح أو الإطار الخارجي للنافذة مع التحكم بالسرعة والكثافة.</p>
+            
+            <div class="code-box">
+                <div class="code-header">
+                    <span>Gradient System Code</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fa-regular fa-copy"></i> نسخ الكود
+                    </button>
+                </div>
+                <pre><code>-- نظام التدرج العام
+Library.ApplyGradient(Window.OpenButton, { Colors = {"Green", "Purple"}, Speed = 5, Intensity = 1 })
+Library.ApplyGradient(Window.FrameStroke, { Colors = {"Blue", "Cyan"}, Speed = 8, Intensity = 0.6 })</code></pre>
+            </div>
+        </section>
+
+        <!-- القسم الرابع: جدول الأيقونات المتاحة (Lucide Icons) -->
+        <section>
+            <h2><i class="fa-solid fa-icons"></i> قائمة الأيقونات المدعومة (LUCIDE_ICONS)</h2>
+            <p class="section-desc">هذه هي كافة الأيقونات والرموز المضمنة في المكتبة والتي يمكنك استخدامها:</p>
+            
+            <div class="icons-grid">
+                <div class="icon-card"><span>home</span><span class="icon-symbol">⌂</span></div>
+                <div class="icon-card"><span>house</span><span class="icon-symbol">⌂</span></div>
+                <div class="icon-card"><span>settings</span><span class="icon-symbol">⚙</span></div>
+                <div class="icon-card"><span>cog</span><span class="icon-symbol">⚙</span></div>
+                <div class="icon-card"><span>user</span><span class="icon-symbol">☺</span></div>
+                <div class="icon-card"><span>user-round</span><span class="icon-symbol">☺</span></div>
+                <div class="icon-card"><span>users</span><span class="icon-symbol">☺☺</span></div>
+                <div class="icon-card"><span>star</span><span class="icon-symbol">★</span></div>
+                <div class="icon-card"><span>heart</span><span class="icon-symbol">♥</span></div>
+                <div class="icon-card"><span>info</span><span class="icon-symbol">ℹ</span></div>
+                <div class="icon-card"><span>circle-alert</span><span class="icon-symbol">⚠</span></div>
+                <div class="icon-card"><span>triangle-alert</span><span class="icon-symbol">⚠</span></div>
+                <div class="icon-card"><span>search</span><span class="icon-symbol">🔍</span></div>
+                <div class="icon-card"><span>bell</span><span class="icon-symbol">🔔</span></div>
+                <div class="icon-card"><span>check</span><span class="icon-symbol">✓</span></div>
+                <div class="icon-card"><span>check-check</span><span class="icon-symbol">✓✓</span></div>
+                <div class="icon-card"><span>x</span><span class="icon-symbol">✕</span></div>
+                <div class="icon-card"><span>plus</span><span class="icon-symbol">+</span></div>
+                <div class="icon-card"><span>minus</span><span class="icon-symbol">–</span></div>
+                <div class="icon-card"><span>trash</span><span class="icon-symbol">🗑</span></div>
+                <div class="icon-card"><span>edit</span><span class="icon-symbol">✎</span></div>
+                <div class="icon-card"><span>folder</span><span class="icon-symbol">📁</span></div>
+                <div class="icon-card"><span>folder-open</span><span class="icon-symbol">📂</span></div>
+                <div class="icon-card"><span>file</span><span class="icon-symbol">📄</span></div>
+                <div class="icon-card"><span>lock</span><span class="icon-symbol">🔒</span></div>
+                <div class="icon-card"><span>unlock</span><span class="icon-symbol">🔓</span></div>
+                <div class="icon-card"><span>sun</span><span class="icon-symbol">☀</span></div>
+                <div class="icon-card"><span>moon</span><span class="icon-symbol">☾</span></div>
+                <div class="icon-card"><span>globe</span><span class="icon-symbol">🌐</span></div>
+                <div class="icon-card"><span>mail</span><span class="icon-symbol">✉</span></div>
+                <div class="icon-card"><span>phone</span><span class="icon-symbol">☎</span></div>
+                <div class="icon-card"><span>calendar</span><span class="icon-symbol">📅</span></div>
+                <div class="icon-card"><span>clock</span><span class="icon-symbol">🕐</span></div>
+                <div class="icon-card"><span>download</span><span class="icon-symbol">⬇</span></div>
+                <div class="icon-card"><span>upload</span><span class="icon-symbol">⬆</span></div>
+                <div class="icon-card"><span>link</span><span class="icon-symbol">🔗</span></div>
+                <div class="icon-card"><span>eye</span><span class="icon-symbol">👁</span></div>
+                <div class="icon-card"><span>shield</span><span class="icon-symbol">🛡</span></div>
+                <div class="icon-card"><span>zap</span><span class="icon-symbol">⚡</span></div>
+                <div class="icon-card"><span>gift</span><span class="icon-symbol">🎁</span></div>
+                <div class="icon-card"><span>music</span><span class="icon-symbol">♪</span></div>
+                <div class="icon-card"><span>image</span><span class="icon-symbol">🖼</span></div>
+                <div class="icon-card"><span>camera</span><span class="icon-symbol">📷</span></div>
+                <div class="icon-card"><span>map-pin</span><span class="icon-symbol">📍</span></div>
+                <div class="icon-card"><span>flag</span><span class="icon-symbol">🚩</span></div>
+                <div class="icon-card"><span>bookmark</span><span class="icon-symbol">🔖</span></div>
+                <div class="icon-card"><span>tag</span><span class="icon-symbol">🏷</span></div>
+                <div class="icon-card"><span>filter</span><span class="icon-symbol">▽</span></div>
+                <div class="icon-card"><span>menu</span><span class="icon-symbol">☰</span></div>
+                <div class="icon-card"><span>grid</span><span class="icon-symbol">▦</span></div>
+                <div class="icon-card"><span>list</span><span class="icon-symbol">≡</span></div>
+                <div class="icon-card"><span>layers</span><span class="icon-symbol">▤</span></div>
+                <div class="icon-card"><span>package</span><span class="icon-symbol">📦</span></div>
+                <div class="icon-card"><span>truck</span><span class="icon-symbol">🚚</span></div>
+                <div class="icon-card"><span>shopping-cart</span><span class="icon-symbol">🛒</span></div>
+                <div class="icon-card"><span>wallet</span><span class="icon-symbol">👛</span></div>
+                <div class="icon-card"><span>credit-card</span><span class="icon-symbol">💳</span></div>
+                <div class="icon-card"><span>chart-bar</span><span class="icon-symbol">📊</span></div>
+                <div class="icon-card"><span>chart-line</span><span class="icon-symbol">📈</span></div>
+                <div class="icon-card"><span>play</span><span class="icon-symbol">▶</span></div>
+                <div class="icon-card"><span>pause</span><span class="icon-symbol">⏸</span></div>
+                <div class="icon-card"><span>volume-2</span><span class="icon-symbol">🔊</span></div>
+                <div class="icon-card"><span>wifi</span><span class="icon-symbol">📶</span></div>
+                <div class="icon-card"><span>battery</span><span class="icon-symbol">🔋</span></div>
+                <div class="icon-card"><span>power</span><span class="icon-symbol">⏻</span></div>
+                <div class="icon-card"><span>code</span><span class="icon-symbol">⌨</span></div>
+                <div class="icon-card"><span>gamepad</span><span class="icon-symbol">🎮</span></div>
+                <div class="icon-card"><span>crown</span><span class="icon-symbol">♛</span></div>
+                <div class="icon-card"><span>rocket</span><span class="icon-symbol">🚀</span></div>
+                <div class="icon-card"><span>sparkles</span><span class="icon-symbol">✦</span></div>
+                <div class="icon-card"><span>palette</span><span class="icon-symbol">🎨</span></div>
+                <div class="icon-card"><span>wrench</span><span class="icon-symbol">🔧</span></div>
+                <div class="icon-card"><span>hammer</span><span class="icon-symbol">🔨</span></div>
+                <div class="icon-card"><span>key</span><span class="icon-symbol">🔑</span></div>
+                <div class="icon-card"><span>database</span><span class="icon-symbol">🗄</span></div>
+                <div class="icon-card"><span>server</span><span class="icon-symbol">🖥</span></div>
+                <div class="icon-card"><span>cloud</span><span class="icon-symbol">☁</span></div>
+                <div class="icon-card"><span>circle</span><span class="icon-symbol">●</span></div>
+                <div class="icon-card"><span>square</span><span class="icon-symbol">■</span></div>
+                <div class="icon-card"><span>triangle</span><span class="icon-symbol">▲</span></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- رسالة التنبيه العائمة عند النسخ -->
+    <div id="toast" class="toast">تم نسخ الكود بنجاح! 📋</div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - Rwonom Library</p>
+    </footer>
+
+    <script>
+        function copyCode(button) {
+            const codeBox = button.closest('.code-box');
+            const codeText = codeBox.querySelector('code').innerText;
+
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fa-solid fa-check"></i> تم النسخ!';
+                button.classList.add('copied');
+
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                    toast.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                alert('فشل نسخ الكود: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
